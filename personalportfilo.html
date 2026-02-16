@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fashion Boutique</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        header {
+            background-image: url("https://images.unsplash.com/photo-1521334884684-d80222895322");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #5e3370;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        /* Section */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* About Section */
+        #about {
+            background-image: url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* Collection */
+        #collection {
+            background-color: #f9f0fb;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            color: white;
+            padding: 60px 20px;
+            width: 200px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+        }
+
+        /* Different dress backgrounds */
+        .saree {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6p3KMZawrX_9CwCvA5JNJwtjFhSD4ZHIJeQ&s");
+        }
+
+        .salwar {
+            background-image: url("https://wholetex.sgp1.cdn.digitaloceanspaces.com/full/elegance-georgette-sequence-work-salwar-suit-dn-5938-8984.jpg");
+        }
+
+        .western {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL7Bp5J64xE-6UuF7T4heqJ6HGLQU6_JHrsA&s");
+        }
+
+        .party {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqjLqzaDvBksZlIFP_7zNKFpHNs0ryZ-URpA&s");
+        }
+
+        /* Contact */
+        #contact {
+            background-image: url("https://images.unsplash.com/photo-1512436991641-6745cdb1723f");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #8e44ad;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Elegance Boutique</h1>
+        <p>Style • Grace • Confidence</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#collection">Collection</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home" class="section">
+        <h2>Welcome to Elegance Boutique</h2>
+        <p>Your destination for elegant and trendy fashion.</p>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>
+            We provide stylish outfits with quality fabrics and modern designs
+            at affordable prices.
+        </p>
+    </section>
+
+    <section id="collection" class="section">
+        <h2>Our Collection</h2>
+
+        <div class="cards">
+            <div class="card saree">Sarees</div>
+            <div class="card salwar">Salwar Suits</div>
+            <div class="card western">Western Wear</div>
+            <div class="card party">Party Dresses</div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Email: eleganceboutique@gmail.com</p>
+        <p>Phone: +91 98765 43210</p>
+    </section>
+
+    <footer>
+        <p>© 2026 Elegance Boutique. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

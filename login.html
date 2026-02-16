@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Login</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1f222b, #1cc88a);
+        }
+
+        .box {
+            width: 350px;
+            padding: 30px 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-top: 12px;
+            margin-bottom: 3px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 15px;
+            cursor: pointer;
+            border: none;
+            background: #4e73df;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #2e59d9;
+        }
+
+        .strength {
+            width: 100%;
+            height: 6px;
+            margin-top: 5px;
+            background: #ddd;
+            border-radius: 3px;
+        }
+
+        .bar {
+            height: 6px;
+            width: 0%;
+            background: red;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        .progress {
+            width: 100%;
+            height: 6px;
+            background: lightgray;
+            margin-top: 15px;
+            border-radius: 3px;
+        }
+
+        .attemptBar {
+            height: 6px;
+            width: 100%;
+            background: green;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        small {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            color: blue;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        #userMsg {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        #msg {
+            text-align: center;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h3>Login Portal</h3>
+
+    <label for="role">Role:</label>
+    <select id="role">
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <label for="user">Username:</label>
+    <input type="text" id="user" onkeyup="checkUsername()">
+    <small id="userMsg"></small>
+
+    <label for="pass">Password:</label>
+    <input type="password" id="pass" onkeyup="checkStrength()">
+    <small onclick="togglePass()">Show/Hide</small>
+
+    <div class="strength">
+        <div class="bar" id="strengthBar"></div>
+    </div>
+
+    <button onclick="login()">Login</button>
+
+    <div class="progress">
+        <div class="attemptBar" id="attemptBar"></div>
+    </div>
+
+    <p id="msg"></p>
+</div>
+
+<script>
+    let attempts = 0;
+    let maxAttempts = 3;
+
+    let users = [
+        {username: "Thirisha", password: "123456789", role: "student"},
+        {username: "admin", password: "admin123", role: "admin"}
+    ];
+
+    function checkUsername(){
+        let u = document.getElementById("user").value;
+        let msg = document.getElementById("userMsg");
+
+        if(u.length < 4){
+            msg.innerHTML = "Username too short";
+            msg.style.color = "red";
+        } else {
+            msg.innerHTML = "Username looks good";
+            msg.style.color = "green";
+        }
+    }
+
+    function checkStrength(){
+        let p = document.getElementById("pass").value;
+        let bar = document.getElementById("strengthBar");
+        let strength = 0;
+
+        if(p.length >= 8) strength++;
+        if(/[A-Z]/.test(p)) strength++;
+        if(/[0-9]/.test(p)) strength++;
+        if(/[\W]/.test(p)) strength++;
+
+        let colors = ["red","orange","yellow","green"];
+        bar.style.width = (strength * 25) + "%";
+        bar.style.background = colors[strength-1] || "red";
+    }
+
+    function togglePass(){
+        let p = document.getElementById("pass");
+        p.type = (p.type === "password") ? "text" : "password";
+    }
+
+    function login(){
+        let u = document.getElementById("user").value.trim();
+        let p = document.getElementById("pass").value.trim();
+        let r = document.getElementById("role").value;
+        let message = document.getElementById("msg");
+        let bar = document.getElementById("attemptBar");
+
+        if(attempts >= maxAttempts){
+            message.style.color = "red";
+            message.innerHTML = "Account Locked!";
+            bar.style.width = "0%";
+            return;
+        }
+
+        let valid = users.some(user => 
+            user.username === u && 
+            user.password === p && 
+            user.role === r
+        );
+
+        if(valid){
+            message.style.color = "green";
+            message.innerHTML = "Welcome " + u + " 🎉";
+            bar.style.width = "100%";
+        } else {
+            attempts++;
+            message.style.color = "red";
+            message.innerHTML = "Invalid Login! Attempts left: " + (maxAttempts - attempts);
+            bar.style.width = Math.max(0, 100 - (attempts * 100 / maxAttempts)) + "%";
+        }
+    }
+</script>
+
+</body>
+</html>
